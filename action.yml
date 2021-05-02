@@ -1,0 +1,15 @@
+name: 'Environment Variables from Dotenv'
+description: 'Export environment variables from a "dotenv" file into GitHub Actions via set-env workflow commands'
+branding:
+  icon: settings
+  color: orange
+inputs:
+  env-file:
+    description: 'Path to the .env file (Default: .env)'
+    required: true
+    default: '.env'
+runs:
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh ${{ inputs.env-file }}
+      shell: bash
